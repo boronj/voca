@@ -20,6 +20,7 @@ import os
 import cv2
 import scipy
 import tempfile
+import importlib
 import numpy as np
 import tensorflow as tf
 from subprocess import call
@@ -28,6 +29,10 @@ from scipy.io import wavfile
 from psbody.mesh import Mesh
 from utils.audio_handler import  AudioHandler
 from utils.rendering import render_mesh_helper
+
+if importlib.metadata.version(tf.__name__).split(".")[0] == "2":
+    import tensorflow.compat.v1 as tf
+    tf.disable_v2_behavior()
 
 def process_audio(ds_path, audio, sample_rate):
     config = {}
