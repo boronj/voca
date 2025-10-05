@@ -20,13 +20,13 @@ import copy
 import resampy
 import importlib
 import numpy as np
-import tensorflow as tf
 from python_speech_features import mfcc
 
-
-if importlib.metadata.version(tf.__name__).split(".")[0] == "2":
+if importlib.metadata.version("tensorflow").split(".")[0] == "2":
     import tensorflow.compat.v1 as tf
     tf.disable_v2_behavior()
+else:
+    import tensorflow as tf
 
 def interpolate_features(features, input_rate, output_rate, output_len=None):
     num_features = features.shape[1]
